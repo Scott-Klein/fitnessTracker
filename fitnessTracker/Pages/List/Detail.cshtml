@@ -1,0 +1,24 @@
+﻿@page "{fitnessPlanId:Int}"
+@model fitnessTracker.DetailModel
+@{
+    ViewData["Title"] = "Details for " + Model.FitnessPlan.CustomerName  ;
+}
+
+<h1>Detail</h1>
+
+<h2>@Model.FitnessPlan.CustomerName</h2>
+
+<div>
+    Pushups: @Model.FitnessPlan.Pushups
+</div>
+
+<div>
+    id: @Model.FitnessPlan.Id
+</div>
+
+@if(Model.Message != null)
+{
+    <div class="alert alert-info" >@Model.Message</div>
+}
+ 
+<a asp-page="./List" class="btn btn-primary">All Plans</a>

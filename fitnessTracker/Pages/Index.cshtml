@@ -1,0 +1,18 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<div id="react-Test-Container">Container for the react component</div>
+<div id="buttonMound">Button will be here</div>
+
+@section Scripts {
+    <partial name="_ReactScriptsPartial" />
+    <script src="~/React/Components/react_test.js"></script>
+    <script src="~/React/Components/hello_react.js"></script>
+}

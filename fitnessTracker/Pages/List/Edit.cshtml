@@ -1,0 +1,30 @@
+﻿@page "{fitnessPlanId:int?}"
+@model fitnessTracker.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h2>Editing @Model.FitnessPlan.CustomerName</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="FitnessPlan.Id" />
+    <div class="form-group">
+        <label asp-for="FitnessPlan.CustomerName"></label>
+        <input asp-for="FitnessPlan.CustomerName" class="form-control" />
+        <span class="text-danger" asp-validation-for="FitnessPlan.CustomerName"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FitnessPlan.Pushups"></label>
+        <input asp-for="FitnessPlan.Pushups" class="form-control" />
+        <span class="text-danger" asp-validation-for="FitnessPlan.Pushups"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

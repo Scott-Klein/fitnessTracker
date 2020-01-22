@@ -1,0 +1,41 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Fitness Tracker</h1>
+</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <!--React app container-->
+    <partial name="Home/_App.cshtml" />
+    <!--
+        *app will handle admin functions with User.Identity checks and User.IsinRole
+        *regular users will be albe to consume their account and participate in the intended activities
+    -->
+}
+else
+{
+    <!--Main landing page content-->
+    <partial name="Home/_Summary.cshtml" />
+    <!--
+        *Page is for those discovering the website for the first time or those just logged out
+        *while logged in the page will be replaced with the user dashboard for controlling their account
+    -->
+}
+
+@section Scripts {
+    @if (User.Identity.IsAuthenticated)
+    {
+        <script src="~/React/Components/Screen.js" type="module"></script>
+        <script src="~/React/Components/app.js" type="module"></script>
+        <partial name="_ReactScriptsPartial" />
+    }
+
+}
+
+
+

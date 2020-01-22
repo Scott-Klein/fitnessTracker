@@ -1,0 +1,32 @@
+﻿@page
+@model fitnessTracker.ListModel
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>List of things</h1>
+
+
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" class="form-control" asp-for="SearchTerm" />
+            <span class="input-group-btn">
+                <button class="btn btn-default">
+                    <i class="fas fa-search"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    @foreach (var plan in Model.FitnessPlans)
+    {
+        <partial name="_Summary" model="plan"/>
+    }
+</table>
+
+<a asp-page="./Edit" class="btn btn-primary">Add new plan</a>
+
+@Model.Message

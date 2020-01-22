@@ -1,0 +1,20 @@
+﻿@using fitnessTracker.core
+@model FitnessPlan
+
+<div class="card">
+    <div class="card-body">
+        <h3>@Model.CustomerName</h3>
+        <span>Pushups: @Model.Pushups</span>
+    </div>
+    <div class="card-footer">
+        <a class="btn btn-lg" asp-page="./Detail" asp-route-fitnessPlanId="@Model.Id">
+            <i class="fas fa-check"></i>
+        </a>
+        <a class="btn btn-lg" asp-page="./Edit" asp-route-fitnessPlanId="@Model.Id">
+            <i class="fas fa-edit"></i>
+        </a>
+        <a class="btn btn-lg" asp-page="./Delete" asp-route-fitnessPlanId="@Model.Id">
+            <i class="fas fa-trash-alt"></i>
+        </a>
+    </div>
+</div>
