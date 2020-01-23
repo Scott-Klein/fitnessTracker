@@ -1,0 +1,14 @@
+﻿@page
+@model FitnessTracking.Web.ProfileModel
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<h1>Profile</h1>
+<div id="appContainer"></div>
+
+@section Scripts
+{
+    <script src="~/React/Components/Profile/app.js" type="module"></script>
+    <partial name="_ReactScriptsPartial" />
+}

@@ -1,6 +1,7 @@
 ﻿using fitnessTracker.core;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace fitnessTracker.Data
@@ -46,12 +47,14 @@ namespace fitnessTracker.Data
 
         public int GetCount()
         {
-            throw new NotImplementedException();
+            return db.UserProfiles.Count();
         }
 
         public ProfileData Update(ProfileData profile)
         {
-            throw new NotImplementedException();
+            var entity = db.UserProfiles.Attach(profile);
+            entity.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            return profile;
         }
     }
 }

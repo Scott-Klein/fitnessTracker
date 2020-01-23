@@ -56,7 +56,7 @@ namespace FitnessTracking.Web
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            
             app.UseRouting();
 
             app.UseAuthentication();
@@ -65,6 +65,7 @@ namespace FitnessTracking.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }
