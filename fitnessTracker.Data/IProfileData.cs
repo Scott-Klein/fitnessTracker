@@ -7,11 +7,12 @@ namespace fitnessTracker.Data
     /// <summary>
     /// Implements returning profile data from a database
     /// </summary>
-    interface IProfileData
+    public interface IProfileData
     {
-        ProfileData GetByEmailAddress(string email);
-        ProfileData Update(ProfileData profile);
-        bool Add(ProfileData profile);
+        Profile GetByEmailAddress(string email);
+        Profile Update(Profile profile);
+        Profile Update(string userEmail, DiscreteExercisePlan discreteExercisePlan);
+        bool Add(Profile profile);
         bool Delete(string email);
 
         int GetCount();

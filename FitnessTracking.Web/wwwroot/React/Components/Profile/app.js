@@ -13,7 +13,7 @@ function App() {
 
 function ApiTester() {
     console.log("Testing the api");
-    fetch("/api/profile").then(function (response) {
+    fetch("https://localhost:44313/api/profile").then(function (response) {
         return response.json();
     }).then(function (myJson) {
         console.log(myJson);

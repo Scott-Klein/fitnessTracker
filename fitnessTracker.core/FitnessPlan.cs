@@ -7,7 +7,7 @@ namespace fitnessTracker.core
 {
     public class FitnessPlan
     {
-        [Required]
+        [Key]
         public int Id { get; set; }
 
         [Required]

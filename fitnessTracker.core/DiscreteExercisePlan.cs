@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.ComponentModel.DataAnnotations;
+
 namespace fitnessTracker.core
 {
     public class DiscreteExercisePlan
     {
+        [Key]
+        public int id { get; set; }
+
         public string Name { get; set; }
 
         List<ExerciseSet> SetsOfExercise;

@@ -5,9 +5,20 @@ using System.Text;
 
 namespace fitnessTracker.core
 {
-    public class ProfileData
+    public class Profile : IProfile
     {
-        [Required]
+        public Profile()
+        {
+
+        }
+
+        public Profile(string Email)
+        {
+            this.Email = Email;
+        }
+
+
+
         [Key]
         public string Email { get; set; }
 

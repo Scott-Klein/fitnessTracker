@@ -13,12 +13,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using FitnessTracking.Web.Configuration;
+using fitnessTracker.Data;
+using fitnessTracker.core;
 
 namespace FitnessTracking.Web
 {
     public class Startup
     {
-        private const int PASS_MIN_LENGTH = 6;
 
         public Startup(IConfiguration configuration)
         {
@@ -33,9 +34,19 @@ namespace FitnessTracking.Web
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("FitnessWebDb")));
+
+            services.AddDbContextPool<FitnessTrackerDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("FitnessDb"));
+            });
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddScoped<IProfile, Profile>();
+            services.AddScoped<IProfileData, SqlProfileData>();
+
             services.AddRazorPages();
+            services.AddControllers();
             services.Configure<IdentityOptions>(options => FitnessTrackingIdentityOptions.GetDefault());
         }
 

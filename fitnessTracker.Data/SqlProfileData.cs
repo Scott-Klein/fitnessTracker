@@ -6,7 +6,7 @@ using System.Text;
 
 namespace fitnessTracker.Data
 {
-    class SqlProfileData : IProfileData
+    public class SqlProfileData : IProfileData
     {
         private readonly FitnessTrackerDbContext db;
 
@@ -15,7 +15,7 @@ namespace fitnessTracker.Data
             this.db = db;
         }
 
-        public bool Add(ProfileData profile)
+        public bool Add(Profile profile)
         {
             db.Add(profile);
             return true;
@@ -40,7 +40,7 @@ namespace fitnessTracker.Data
             return true;
         }
 
-        public ProfileData GetByEmailAddress(string email)
+        public Profile GetByEmailAddress(string email)
         {
             return db.UserProfiles.Find(email);
         }
@@ -50,11 +50,20 @@ namespace fitnessTracker.Data
             return db.UserProfiles.Count();
         }
 
-        public ProfileData Update(ProfileData profile)
+        public Profile Update(Profile profile)
         {
             var entity = db.UserProfiles.Attach(profile);
             entity.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             return profile;
+        }
+
+        public Profile Update(string userEmail, DiscreteExercisePlan discreteExercisePlan)
+        {
+            var userProfile = db.UserProfiles.Find(userEmail);
+            var discreteExercisePlansList = userProfile.DiscreteExercisePlans.ToList();
+            discreteExercisePlansList.Add(discreteExercisePlan);
+            userProfile.DiscreteExercisePlans = discreteExercisePlansList;
+            return Update(userProfile);
         }
     }
 }
