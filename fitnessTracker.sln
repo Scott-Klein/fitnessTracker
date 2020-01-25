@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fitnessTracker.core", "fitn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fitnessTracker.Data", "fitnessTracker.Data\fitnessTracker.Data.csproj", "{158CCC21-E704-48C3-B26B-3FD085F4B20F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessTracking.Web", "FitnessTracking.Web\FitnessTracking.Web.csproj", "{406A0830-0328-4065-AC20-50A3E0BE28A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessTracking.Web", "FitnessTracking.Web\FitnessTracking.Web.csproj", "{406A0830-0328-4065-AC20-50A3E0BE28A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessTracker.Tests", "FitnessTracker.Tests\FitnessTracker.Tests.csproj", "{926CDD94-A704-4302-A880-BF6A38D00CF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{406A0830-0328-4065-AC20-50A3E0BE28A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{406A0830-0328-4065-AC20-50A3E0BE28A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{406A0830-0328-4065-AC20-50A3E0BE28A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{926CDD94-A704-4302-A880-BF6A38D00CF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{926CDD94-A704-4302-A880-BF6A38D00CF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{926CDD94-A704-4302-A880-BF6A38D00CF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{926CDD94-A704-4302-A880-BF6A38D00CF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

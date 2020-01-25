@@ -11,8 +11,9 @@ namespace fitnessTracker.Data
     {
         Profile GetByEmailAddress(string email);
         Profile Update(Profile profile);
-        Profile Update(string userEmail, DiscreteExercisePlan discreteExercisePlan);
+        Profile Update(string userEmail, DiscreteExercisePlan exercisePlan);
         bool Add(Profile profile);
+        bool Add(string userEmail, DiscreteExercisePlan exercisePlan);
         bool Delete(string email);
 
         int GetCount();

@@ -42,6 +42,12 @@ namespace FitnessTracking.Web.Api
                 _ = this.profileData.Add(newProfile);
                 _ = this.profileData.Commit();
             }
+            if (thisUser.DiscreteExercisePlans == null)
+            {
+                var exPlan = new DiscreteExercisePlan(true);
+                this.profileData.Add(userEmail, exPlan);
+                this.profileData.Commit();
+            }
             return thisUser;
         }
 

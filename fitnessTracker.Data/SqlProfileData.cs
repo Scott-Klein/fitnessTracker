@@ -21,6 +21,30 @@ namespace fitnessTracker.Data
             return true;
         }
 
+        public bool Add(string userEmail, DiscreteExercisePlan exercisePlan)
+        {
+            var userProfile = db.UserProfiles.Find(userEmail);
+            List<DiscreteExercisePlan> exPlans;
+            if (userProfile.DiscreteExercisePlans == null)
+            {
+                userProfile.DiscreteExercisePlans = new List<DiscreteExercisePlan>();
+                exPlans = userProfile.DiscreteExercisePlans.ToList();
+            } else
+            {
+                exPlans = userProfile.DiscreteExercisePlans.ToList();
+            }
+
+            exPlans.Add(exercisePlan);
+            userProfile.DiscreteExercisePlans = exPlans;
+            if(Update(userProfile) != null)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
+
         public int Commit()
         {
             return db.SaveChanges();
@@ -57,12 +81,13 @@ namespace fitnessTracker.Data
             return profile;
         }
 
-        public Profile Update(string userEmail, DiscreteExercisePlan discreteExercisePlan)
+        public Profile Update(string userEmail, DiscreteExercisePlan exercisePlan)
         {
             var userProfile = db.UserProfiles.Find(userEmail);
-            var discreteExercisePlansList = userProfile.DiscreteExercisePlans.ToList();
-            discreteExercisePlansList.Add(discreteExercisePlan);
-            userProfile.DiscreteExercisePlans = discreteExercisePlansList;
+            var planList = userProfile.DiscreteExercisePlans.ToList();
+            var discreteExercisePlan = planList.Find(dep => dep.id == exercisePlan.id);
+            planList.Add(exercisePlan);
+            userProfile.DiscreteExercisePlans = planList;
             return Update(userProfile);
         }
     }
