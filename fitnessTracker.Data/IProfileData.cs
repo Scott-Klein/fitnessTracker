@@ -12,9 +12,9 @@ namespace fitnessTracker.Data
         Profile GetByEmailAddress(string email);
         Profile Update(Profile profile);
         Profile Update(string userEmail, DiscreteExercisePlan exercisePlan);
-        bool Add(Profile profile);
-        bool Add(string userEmail, DiscreteExercisePlan exercisePlan);
-        bool Delete(string email);
+        void Add(Profile profile);
+        void Add(string userEmail, DiscreteExercisePlan exercisePlan);
+        void Delete(string email);
 
         int GetCount();
         int Commit();

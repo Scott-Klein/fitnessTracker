@@ -39,8 +39,8 @@ namespace FitnessTracking.Web.Api
             if (thisUser == null)
             {
                 var newProfile = new Profile(userEmail);
-                _ = this.profileData.Add(newProfile);
-                _ = this.profileData.Commit();
+                this.profileData.Add(newProfile);
+                this.profileData.Commit();
             }
             if (thisUser.DiscreteExercisePlans == null)
             {

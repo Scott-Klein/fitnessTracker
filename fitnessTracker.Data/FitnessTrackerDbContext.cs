@@ -13,7 +13,24 @@ namespace fitnessTracker.Data
         {
 
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFProviders.InMemory;Trusted_Connection=True;ConnectRetryCount=0");
+            }
+        }
         public DbSet<FitnessPlan> FitnessPlans { get; set; }
         public DbSet<Profile> UserProfiles { get; set; }
+
+        public static FitnessTrackerDbContext MockDBContextFactory()
+        {
+            var options = new DbContextOptionsBuilder<FitnessTrackerDbContext>().UseInMemoryDatabase(databaseName: "FakeDatabase").Options;
+
+            return new FitnessTrackerDbContext(options);
+            
+        }
     }
 }

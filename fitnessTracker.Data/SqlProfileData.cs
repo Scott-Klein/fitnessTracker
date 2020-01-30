@@ -8,41 +8,43 @@ namespace fitnessTracker.Data
 {
     public class SqlProfileData : IProfileData
     {
-        private readonly FitnessTrackerDbContext db;
+        private readonly FitnessTrackerDbContext _db;
+
+        public FitnessTrackerDbContext db
+        {
+            get
+            {
+                return _db;
+            }
+            set => throw new AccessViolationException();
+        }
+
 
         public SqlProfileData(FitnessTrackerDbContext db)
         {
-            this.db = db;
+            this._db = db;
         }
 
-        public bool Add(Profile profile)
+        public void Add(Profile profile)
         {
             db.Add(profile);
-            return true;
         }
 
-        public bool Add(string userEmail, DiscreteExercisePlan exercisePlan)
+        //if the profile already exists call the more appropriate update function instead.
+        public void Add(string userEmail, DiscreteExercisePlan exercisePlan)
         {
             var userProfile = db.UserProfiles.Find(userEmail);
-            List<DiscreteExercisePlan> exPlans;
-            if (userProfile.DiscreteExercisePlans == null)
+            if (userProfile != null)
             {
-                userProfile.DiscreteExercisePlans = new List<DiscreteExercisePlan>();
-                exPlans = userProfile.DiscreteExercisePlans.ToList();
-            } else
-            {
-                exPlans = userProfile.DiscreteExercisePlans.ToList();
+                Update(userEmail, exercisePlan);
             }
 
+            userProfile = new Profile(userEmail);
+            var exPlans = new List<DiscreteExercisePlan>();
             exPlans.Add(exercisePlan);
             userProfile.DiscreteExercisePlans = exPlans;
-            if(Update(userProfile) != null)
-            {
-                return true;
-            } else
-            {
-                return false;
-            }
+
+            Add(userProfile);
         }
 
         public int Commit()
@@ -50,18 +52,13 @@ namespace fitnessTracker.Data
             return db.SaveChanges();
         }
 
-        public bool Delete(string email)
+        public void Delete(string email)
         {
             var profile = GetByEmailAddress(email);
             if (profile != null)
             {
                 db.Remove(profile);
             }
-            else
-            {
-                return false;
-            }
-            return true;
         }
 
         public Profile GetByEmailAddress(string email)
