@@ -15,13 +15,15 @@ namespace FitnessTracker.Tests.Unit
     {
         private SqlProfileData profileData;
         private readonly string testEmail = "test@gmail.com";
+        private Profile fakeProfile;
+
         [Test]
-        public void SQLprofile_AddingProfile_ProfileInDBset()
+        public void AddingProfile_ProfileInDBset()
         {
             //Arrange
             profileData = new SqlProfileData(FitnessTrackerDbContext.MockDBContextFactory());
 
-            var fakeProfile = Profile.FakeFactory("test@gmail.com");
+            fakeProfile = Profile.FakeFactory("test@gmail.com");
 
             //Act
             profileData.Add(fakeProfile);
@@ -33,29 +35,33 @@ namespace FitnessTracker.Tests.Unit
         }
 
         [Test]
-        public void SQLprofile_AddingProfileByElements_ProfileInDBset()
+        public void AddingProfileByElements_ProfileInDBset()
         {
+            //Arrange
             profileData = new SqlProfileData(FitnessTrackerDbContext.MockDBContextFactory());
 
-            var fakeProfile = new Profile();
+            fakeProfile = new Profile();
             var discExcPlans = new List<DiscreteExercisePlan>();
             discExcPlans.Add(new DiscreteExercisePlan(true));
 
             fakeProfile.DiscreteExercisePlans = discExcPlans;
 
+            //Act
             profileData.Add(testEmail, new DiscreteExercisePlan(true));
 
+            //Assert
             var addResult = profileData.db.UserProfiles.Find(testEmail);
 
             Assert.That(addResult, Is.Not.Null);
         }
 
         [Test]
-        public void SQLprofile_ProveExerciseWasAdded_ExerciseInProfile()
+        public void ProveExerciseWasAdded_ExerciseInProfile()
         {
+            //Arrange
             profileData = new SqlProfileData(FitnessTrackerDbContext.MockDBContextFactory());
 
-            var fakeProfile = new Profile();
+            fakeProfile = new Profile(testEmail);
             var discExcPlans = new List<DiscreteExercisePlan>
             {
                 new DiscreteExercisePlan(true)
@@ -63,11 +69,58 @@ namespace FitnessTracker.Tests.Unit
 
             fakeProfile.DiscreteExercisePlans = discExcPlans;
 
+            //Act
             profileData.Add(testEmail, new DiscreteExercisePlan(true));
 
+            //Assert
             var addResult = profileData.db.UserProfiles.Find(testEmail);
 
-            Assert.That(addResult.DiscreteExercisePlans, Is.EqualTo(discExcPlans));
+            Assert.That(addResult, Is.EqualTo(fakeProfile));
+        }
+
+        [Test]
+        public void ProfileDeletes()
+        {
+            profileData = new SqlProfileData(FitnessTrackerDbContext.MockDBContextFactory());
+
+            var fakeProfile = new Profile(testEmail);
+            var discExcPlans = new List<DiscreteExercisePlan>
+            {
+                new DiscreteExercisePlan(true)
+            };
+
+            fakeProfile.DiscreteExercisePlans = discExcPlans;
+
+            profileData.Add(fakeProfile);
+
+            var addResult = profileData.db.UserProfiles.Find(fakeProfile.Email);
+
+            //Assert
+            Assert.That(addResult, Is.Not.Null);
+
+            profileData.Delete(fakeProfile.Email);
+            
+            addResult = profileData.db.UserProfiles.Find(fakeProfile.Email);
+
+            //Assert
+            Assert.That(addResult, Is.Null);
+        }
+
+
+        public void SetupFakeWithDb()
+        {
+            profileData = new SqlProfileData(FitnessTrackerDbContext.MockDBContextFactory());
+
+            fakeProfile = new Profile(testEmail);
+            var discExcPlans = new List<DiscreteExercisePlan>
+            {
+                new DiscreteExercisePlan(true)
+            };
+
+            fakeProfile.DiscreteExercisePlans = discExcPlans;
+
+            //Act
+            profileData.Add(testEmail, new DiscreteExercisePlan(true));
         }
     }
 }
