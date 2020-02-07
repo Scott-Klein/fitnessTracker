@@ -29,27 +29,42 @@ namespace FitnessTracking.Web.Api
         [HttpGet]
         public Profile GetProfileDataAsync()
         {
-            // The logged in users email address
             var userEmail = User.FindFirst(ClaimTypes.Name).Value;
 
             var thisUser = this.profileData.GetByEmailAddress(userEmail);
-            
 
-            //if the user doesn't have a profile automatically generate it.
-            if (thisUser == null)
-            {
-                var newProfile = new Profile(userEmail);
-                this.profileData.Add(newProfile);
-                this.profileData.Commit();
-            }
-            if (thisUser.DiscreteExercisePlans == null)
-            {
-                var exPlan = new DiscreteExercisePlan(true);
-                this.profileData.Add(userEmail, exPlan);
-                this.profileData.Commit();
-            }
+            GenerateUserProfile(userEmail, thisUser);
+
             return thisUser;
         }
 
+
+
+        //Helper methods
+        private void GenerateUserProfile(string userEmail, Profile thisUser)
+        {
+            if (thisUser == null)
+            {
+                CreateProfile(userEmail);
+            }
+            if (thisUser.DiscreteExercisePlans == null)
+            {
+                CreateExercisePlans(userEmail);
+            }
+        }
+
+        private void CreateExercisePlans(string userEmail)
+        {
+            var exPlan = new DiscreteExercisePlan(true);
+            this.profileData.Update(userEmail, exPlan);
+            this.profileData.Commit();
+        }
+
+        private void CreateProfile(string userEmail)
+        {
+            var newProfile = new Profile(userEmail);
+            this.profileData.Add(newProfile);
+            this.profileData.Commit();
+        }
     }
 }

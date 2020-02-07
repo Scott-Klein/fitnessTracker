@@ -19,7 +19,6 @@ namespace fitnessTracker.Data
             set => throw new AccessViolationException();
         }
 
-
         public SqlProfileData(FitnessTrackerDbContext db)
         {
             this._db = db;
@@ -68,7 +67,7 @@ namespace fitnessTracker.Data
 
         public int GetCount()
         {
-            return db.UserProfiles.Count();
+            return db.UserProfiles.Local.Count;
         }
 
         public Profile Update(Profile profile)
@@ -81,11 +80,32 @@ namespace fitnessTracker.Data
         public Profile Update(string userEmail, DiscreteExercisePlan exercisePlan)
         {
             var userProfile = db.UserProfiles.Find(userEmail);
+            if (userProfile.DiscreteExercisePlans == null)
+            {
+                InsertNewExercisePlan(exercisePlan, userProfile);
+            }
+            else
+            {
+                UpdateExistingPlan(exercisePlan, userProfile);
+            }
+            return Update(userProfile);
+        }
+
+
+        //Helper methods
+        private static void UpdateExistingPlan(DiscreteExercisePlan exercisePlan, Profile userProfile)
+        {
             var planList = userProfile.DiscreteExercisePlans.ToList();
             var discreteExercisePlan = planList.Find(dep => dep.id == exercisePlan.id);
-            planList.Add(exercisePlan);
+            planList[planList.IndexOf(discreteExercisePlan)] = exercisePlan;
             userProfile.DiscreteExercisePlans = planList;
-            return Update(userProfile);
+        }
+
+        private static void InsertNewExercisePlan(DiscreteExercisePlan exercisePlan, Profile userProfile)
+        {
+            var exercises = new List<DiscreteExercisePlan>();
+            exercises.Add(exercisePlan);
+            userProfile.DiscreteExercisePlans = exercises;
         }
     }
 }
