@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
@@ -11,29 +12,22 @@ namespace fitnessTracker.core
     {
         public Profile()
         {
-
+            this.DiscreteExercisePlans = new List<DiscreteExercisePlan>();
         }
 
         public Profile(string Email)
         {
+            this.DiscreteExercisePlans = new List<DiscreteExercisePlan>();
             this.Email = Email;
         }
 
-        //This creates a functional fake profile with a fake DiscreteExercisePlan.
-        public static Profile FakeFactory(string Email)
-        {
-            Profile fake = new Profile(Email);
-            var discreteFake = new DiscreteExercisePlan(true);
-            var discreteList = new List<DiscreteExercisePlan>();
-            discreteList.Add(discreteFake);
-            fake.DiscreteExercisePlans = discreteList;
-            return fake;
-        }
+
 
         [Key]
         public string Email { get; set; }
 
         public IEnumerable<DiscreteExercisePlan> DiscreteExercisePlans { get; set; }
+
 
         //Equality Overrides
         public override bool Equals(object obj)
@@ -104,5 +98,18 @@ namespace fitnessTracker.core
             }
             return intersection;
         }
+        
+        
+        //This creates a functional fake profile with a fake DiscreteExercisePlan.
+        public static Profile FakeFactory(string Email)
+        {
+            Profile fake = new Profile(Email);
+            var discreteFake = new DiscreteExercisePlan(true);
+            var discreteList = new List<DiscreteExercisePlan>();
+            discreteList.Add(discreteFake);
+            fake.DiscreteExercisePlans = discreteList;
+            return fake;
+        }
+
     }
 }

@@ -8,6 +8,8 @@ namespace fitnessTracker.core
 {
     public class ExerciseSet : IEquatable<ExerciseSet>
     {
+        public int Id { get; set; }
+
         [Required]
         public int SetNumber { get; set; }
 

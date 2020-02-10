@@ -47,7 +47,7 @@ namespace FitnessTracking.Web.Api
             {
                 CreateProfile(userEmail);
             }
-            if (thisUser.DiscreteExercisePlans == null)
+            else if (thisUser.DiscreteExercisePlans.Count() == 0)
             {
                 CreateExercisePlans(userEmail);
             }

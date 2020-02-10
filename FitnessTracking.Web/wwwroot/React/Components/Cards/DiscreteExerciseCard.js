@@ -1,6 +1,6 @@
 
 function ExerciseCard() {
-    var sets = 5;
+
     return React.createElement(
         "div",
         { className: "card card-body mb-5" },
@@ -18,13 +18,7 @@ function ExerciseCard() {
                 React.createElement(
                     "div",
                     { className: "col-sm" },
-                    React.createElement(
-                        "table",
-                        null,
-                        utils.range(1, sets).map(function (setId) {
-                            return React.createElement(Set, { key: setId });
-                        })
-                    )
+                    React.createElement(SetsDisplay, null)
                 ),
                 React.createElement(
                     "div",
@@ -32,6 +26,21 @@ function ExerciseCard() {
                     React.createElement(ExerciseCardDetails, null)
                 )
             )
+        )
+    );
+}
+
+function SetsDisplay() {
+    var sets = 5;
+    return React.createElement(
+        "table",
+        null,
+        React.createElement(
+            "tbody",
+            null,
+            utils.range(1, sets).map(function (setId) {
+                return React.createElement(Set, { key: setId });
+            })
         )
     );
 }
@@ -60,31 +69,35 @@ function ExerciseCardDetails() {
             { className: "mb-3" },
             "Tomorrow: 127"
         ),
+        React.createElement(CompletionForm, null)
+    );
+}
+
+function CompletionForm() {
+    return React.createElement(
+        "form",
+        null,
         React.createElement(
-            "form",
+            "label",
             null,
+            "Current set:"
+        ),
+        React.createElement(
+            "div",
+            { className: "row" },
             React.createElement(
-                "label",
-                null,
-                "Current set:"
+                "div",
+                { className: "col" },
+                React.createElement(
+                    "button",
+                    { type: "button", className: "btn btn-success" },
+                    "Complete"
+                )
             ),
             React.createElement(
                 "div",
-                { className: "row" },
-                React.createElement(
-                    "div",
-                    { className: "col" },
-                    React.createElement(
-                        "button",
-                        { type: "button", className: "btn btn-succes" },
-                        "Complete"
-                    )
-                ),
-                React.createElement(
-                    "div",
-                    { className: "col" },
-                    React.createElement("input", { type: "text", className: "form-control", placeholder: "Reps" })
-                )
+                { className: "col" },
+                React.createElement("input", { type: "text", className: "form-control", placeholder: "Reps" })
             )
         )
     );

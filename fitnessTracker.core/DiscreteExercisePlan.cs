@@ -4,6 +4,7 @@ using System.Text;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace fitnessTracker.core
 {
@@ -11,7 +12,7 @@ namespace fitnessTracker.core
     {
         public DiscreteExercisePlan()
         {
-
+            SetsOfExercise = new List<ExerciseSet>();
         }
 
         public DiscreteExercisePlan(bool randomGenerate)
@@ -31,7 +32,7 @@ namespace fitnessTracker.core
 
         public string Name { get; set; }
 
-        List<ExerciseSet> SetsOfExercise;
+        public List<ExerciseSet> SetsOfExercise { get; set; }
 
         public List<ExerciseSet> GetSetsForDay(DateTime day)
         {

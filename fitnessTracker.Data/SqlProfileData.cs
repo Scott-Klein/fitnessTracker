@@ -62,7 +62,10 @@ namespace fitnessTracker.Data
 
         public Profile GetByEmailAddress(string email)
         {
-            return db.UserProfiles.Find(email);
+            var result = db.UserProfiles.Find(email);
+            
+            var allPlans = db.DiscreteExercisePlans.ToList();
+            return result;
         }
 
         public int GetCount()
@@ -80,7 +83,7 @@ namespace fitnessTracker.Data
         public Profile Update(string userEmail, DiscreteExercisePlan exercisePlan)
         {
             var userProfile = db.UserProfiles.Find(userEmail);
-            if (userProfile.DiscreteExercisePlans == null)
+            if (userProfile.DiscreteExercisePlans.Count() == 0)
             {
                 InsertNewExercisePlan(exercisePlan, userProfile);
             }

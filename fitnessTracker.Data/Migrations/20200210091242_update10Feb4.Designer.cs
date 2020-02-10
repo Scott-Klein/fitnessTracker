@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using fitnessTracker.Data;
 
 namespace fitnessTracker.Data.Migrations
 {
     [DbContext(typeof(FitnessTrackerDbContext))]
-    partial class FitnessTrackerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200210091242_update10Feb4")]
+    partial class update10Feb4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,9 +51,6 @@ namespace fitnessTracker.Data.Migrations
                     b.Property<DateTime>("Day")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DiscreteExercisePlanid")
-                        .HasColumnType("int");
-
                     b.Property<int>("Repetitions")
                         .HasColumnType("int");
 
@@ -62,8 +61,6 @@ namespace fitnessTracker.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DiscreteExercisePlanid");
 
                     b.ToTable("ExerciseSets");
                 });
@@ -103,13 +100,6 @@ namespace fitnessTracker.Data.Migrations
                     b.HasOne("fitnessTracker.core.Profile", null)
                         .WithMany("DiscreteExercisePlans")
                         .HasForeignKey("ProfileEmail");
-                });
-
-            modelBuilder.Entity("fitnessTracker.core.ExerciseSet", b =>
-                {
-                    b.HasOne("fitnessTracker.core.DiscreteExercisePlan", null)
-                        .WithMany("SetsOfExercise")
-                        .HasForeignKey("DiscreteExercisePlanid");
                 });
 #pragma warning restore 612, 618
         }
