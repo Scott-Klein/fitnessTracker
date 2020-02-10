@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using fitnessTracker.Data;
 
 namespace fitnessTracker.Data.Migrations
 {
     [DbContext(typeof(FitnessTrackerDbContext))]
-    partial class FitnessTrackerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200210113430_update10Feb6")]
+    partial class update10Feb6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

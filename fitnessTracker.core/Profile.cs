@@ -21,14 +21,12 @@ namespace fitnessTracker.core
             this.Email = Email;
         }
 
-
-
         [Key]
         public string Email { get; set; }
 
         public IEnumerable<DiscreteExercisePlan> DiscreteExercisePlans { get; set; }
 
-
+        #region equaity
         //Equality Overrides
         public override bool Equals(object obj)
         {
@@ -110,6 +108,6 @@ namespace fitnessTracker.core
             fake.DiscreteExercisePlans = discreteList;
             return fake;
         }
-
+        #endregion
     }
 }

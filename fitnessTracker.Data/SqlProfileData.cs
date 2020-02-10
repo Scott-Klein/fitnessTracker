@@ -65,6 +65,7 @@ namespace fitnessTracker.Data
             var result = db.UserProfiles.Find(email);
             
             var allPlans = db.DiscreteExercisePlans.ToList();
+            var allSets = db.ExerciseSets.ToList();
             return result;
         }
 

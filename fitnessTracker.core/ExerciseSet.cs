@@ -21,6 +21,9 @@ namespace fitnessTracker.core
         [Required]
         public DateTime Day { get; set; }
 
+        //Navigation property
+        public DiscreteExercisePlan DiscreteExercisePlan { get; set; }
+
         public override bool Equals(object obj)
         {
 

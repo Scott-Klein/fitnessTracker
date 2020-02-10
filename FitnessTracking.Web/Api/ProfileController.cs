@@ -2,10 +2,12 @@
 using fitnessTracker.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 
@@ -27,14 +29,14 @@ namespace FitnessTracking.Web.Api
 
         // GET: api/Profile
         [HttpGet]
-        public Profile GetProfileDataAsync()
+        public async Task<Profile> GetProfileDataAsync()
         {
             var userEmail = User.FindFirst(ClaimTypes.Name).Value;
 
             var thisUser = this.profileData.GetByEmailAddress(userEmail);
 
             GenerateUserProfile(userEmail, thisUser);
-
+  
             return thisUser;
         }
 
@@ -58,6 +60,7 @@ namespace FitnessTracking.Web.Api
             var exPlan = new DiscreteExercisePlan(true);
             this.profileData.Update(userEmail, exPlan);
             this.profileData.Commit();
+            var result = this.profileData.GetByEmailAddress(userEmail);
         }
 
         private void CreateProfile(string userEmail)

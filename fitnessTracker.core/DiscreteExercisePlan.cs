@@ -42,12 +42,14 @@ namespace fitnessTracker.core
             return query.ToList();
         }
 
+        public Profile Profile { get; set; }
+
         //Equality
+        #region EqualityOverrides
         public override bool Equals(object obj) => Equals(obj as DiscreteExercisePlan);
 
         public bool Equals(DiscreteExercisePlan other)
         {
-
             if (this.Name == other.Name)
             {
                 if (this.SetsOfExercise.Count == other.SetsOfExercise.Count)
@@ -96,6 +98,7 @@ namespace fitnessTracker.core
         {
             return id.ToString().GetHashCode() ^ this.Name.GetHashCode();
         }
+        #endregion
     }
 
 
