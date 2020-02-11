@@ -36,7 +36,7 @@ namespace FitnessTracking.Web.Api
             var thisUser = this.profileData.GetByEmailAddress(userEmail);
 
             GenerateUserProfile(userEmail, thisUser);
-  
+
             return thisUser;
         }
 

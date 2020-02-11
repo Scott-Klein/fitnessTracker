@@ -2,33 +2,27 @@
 import ExerciseCard from './Cards/DiscreteExerciseCard.js';
 
 function App() {
-    const [profile, setProfile] = React.useState();
+    const [profile, setProfile] = React.useState({ email: "Loading...", discreteExercisePlans: {} });
     let stringData;
     React.useEffect(() => {
-        fetch("https://localhost:44313/api/profile").then((response) =>
-        {
+        fetch("https://localhost:44313/api/profile").then((response) => {
             return response.json();
         })
-            .then((data) =>
-            {
-                    if (ProfileComparer(data, profile)) {
-                        console.log("They are the same!");
-                        console.log(data);
-                    } else {
-                        console.log("Re rendering");
-                        setProfile(data);
-                    }
+            .then((data) => {
+                console.log("Re rendering");
+                console.log(data);
+                setProfile(data);
             });
 
-    });
+    }, []);
 
     return (
         <div className="container">
-            <Screen toDisplay="React is working Correctly" />
-            <ExerciseCard />
+            <Screen toDisplay={profile.email} />
+            <ExerciseCard discreteExercises="{profile.discreteExercisePlans}" />
 
         </div>
-        );
+    );
 }
 
 

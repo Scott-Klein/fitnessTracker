@@ -4,7 +4,7 @@ import Screen from './Screen.js';
 import ExerciseCard from './Cards/DiscreteExerciseCard.js';
 
 function App() {
-    var _React$useState = React.useState(),
+    var _React$useState = React.useState({ email: "Loading...", discreteExercisePlans: {} }),
         _React$useState2 = _slicedToArray(_React$useState, 2),
         profile = _React$useState2[0],
         setProfile = _React$useState2[1];
@@ -14,21 +14,17 @@ function App() {
         fetch("https://localhost:44313/api/profile").then(function (response) {
             return response.json();
         }).then(function (data) {
-            if (ProfileComparer(data, profile)) {
-                console.log("They are the same!");
-                console.log(data);
-            } else {
-                console.log("Re rendering");
-                setProfile(data);
-            }
+            console.log("Re rendering");
+            console.log(data);
+            setProfile(data);
         });
-    });
+    }, []);
 
     return React.createElement(
         'div',
         { className: 'container' },
-        React.createElement(Screen, { toDisplay: 'React is working Correctly' }),
-        React.createElement(ExerciseCard, null)
+        React.createElement(Screen, { toDisplay: profile.email }),
+        React.createElement(ExerciseCard, { discreteExercises: '{profile.discreteExercisePlans}' })
     );
 }
 

@@ -3,7 +3,7 @@ npx babel --watch src --out-dir . --presets react-app/prod
 
 //from .data
 dotnet ef dbcontext info -s ..\FitnessTracking.Web\FitnessTracking.web.csproj --context FitnessTrackerDbContext
-// 
+// create migration
 dotnet ef migrations add updateDatabase -s ..\FitnessTracking.Web\FitnessTracking.web.csproj --context FitnessTrackerDbContext
-
+//apply migration
 dotnet ef database update updateDatabase -s ..\FitnessTracking.Web\FitnessTracking.web.csproj --context FitnessTrackerDbContext

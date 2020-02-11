@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 
 namespace fitnessTracker.core
 {
@@ -22,6 +23,7 @@ namespace fitnessTracker.core
         public DateTime Day { get; set; }
 
         //Navigation property
+        [JsonIgnore]
         public DiscreteExercisePlan DiscreteExercisePlan { get; set; }
 
         public override bool Equals(object obj)

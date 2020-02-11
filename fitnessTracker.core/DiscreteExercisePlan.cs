@@ -5,6 +5,7 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace fitnessTracker.core
 {
@@ -42,6 +43,7 @@ namespace fitnessTracker.core
             return query.ToList();
         }
 
+        [JsonIgnore]
         public Profile Profile { get; set; }
 
         //Equality
