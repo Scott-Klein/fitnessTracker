@@ -2,7 +2,7 @@
 import ExerciseCard from './Cards/DiscreteExerciseCard.js';
 
 function App() {
-    const [profile, setProfile] = React.useState({ email: "Loading...", discreteExercisePlans: {} });
+    const [profile, setProfile] = React.useState({ email: "Loading...", discreteExercisePlans: [{ name: "No name", setsOfExercise: [{ sets: { id: 999, setNumber: 1, repetitions: 12, repetitionsCompleted: 25 } }]}] });
     let stringData;
     React.useEffect(() => {
         fetch("https://localhost:44313/api/profile").then((response) => {
@@ -19,7 +19,7 @@ function App() {
     return (
         <div className="container">
             <Screen toDisplay={profile.email} />
-            <ExerciseCard discreteExercises="{profile.discreteExercisePlans}" />
+            <ExerciseCard discreteExercises={profile.discreteExercisePlans} />
 
         </div>
     );

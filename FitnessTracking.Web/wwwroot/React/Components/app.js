@@ -4,7 +4,7 @@ import Screen from './Screen.js';
 import ExerciseCard from './Cards/DiscreteExerciseCard.js';
 
 function App() {
-    var _React$useState = React.useState({ email: "Loading...", discreteExercisePlans: {} }),
+    var _React$useState = React.useState({ email: "Loading...", discreteExercisePlans: [{ name: "No name", setsOfExercise: [{ sets: { id: 999, setNumber: 1, repetitions: 12, repetitionsCompleted: 25 } }] }] }),
         _React$useState2 = _slicedToArray(_React$useState, 2),
         profile = _React$useState2[0],
         setProfile = _React$useState2[1];
@@ -24,7 +24,7 @@ function App() {
         'div',
         { className: 'container' },
         React.createElement(Screen, { toDisplay: profile.email }),
-        React.createElement(ExerciseCard, { discreteExercises: '{profile.discreteExercisePlans}' })
+        React.createElement(ExerciseCard, { discreteExercises: profile.discreteExercisePlans })
     );
 }
 
