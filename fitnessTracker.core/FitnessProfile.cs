@@ -8,14 +8,14 @@ using System.Text;
 
 namespace fitnessTracker.core
 {
-    public class Profile : IProfile, IEquatable<Profile>
+    public class FitnessProfile : IProfile, IEquatable<FitnessProfile>
     {
-        public Profile()
+        public FitnessProfile()
         {
             this.DiscreteExercisePlans = new List<DiscreteExercisePlan>();
         }
 
-        public Profile(string Email)
+        public FitnessProfile(string Email)
         {
             this.DiscreteExercisePlans = new List<DiscreteExercisePlan>();
             this.Email = Email;
@@ -30,13 +30,13 @@ namespace fitnessTracker.core
         //Equality Overrides
         public override bool Equals(object obj)
         {
-            if (obj is Profile)
-                return Equals(obj as Profile);
+            if (obj is FitnessProfile)
+                return Equals(obj as FitnessProfile);
             else
                 return false;
         }
 
-        public bool Equals(Profile other)
+        public bool Equals(FitnessProfile other)
         {
             if (object.Equals(other, null))
             {
@@ -53,7 +53,7 @@ namespace fitnessTracker.core
             return false;
         }
 
-        public static bool operator ==(Profile lhs, Profile rhs)
+        public static bool operator ==(FitnessProfile lhs, FitnessProfile rhs)
         {
             if (!object.Equals(lhs, null))
             {
@@ -67,7 +67,7 @@ namespace fitnessTracker.core
             }
         }
 
-        public static bool operator !=(Profile lhs, Profile rhs)
+        public static bool operator !=(FitnessProfile lhs, FitnessProfile rhs)
         {
             return !(lhs == rhs);
         }
@@ -77,7 +77,7 @@ namespace fitnessTracker.core
             return Email.GetHashCode() ^ DiscreteExercisePlans.GetHashCode();
         }
 
-        private List<DiscreteExercisePlan> ThisProfileIntersectsExercises(Profile other)
+        private List<DiscreteExercisePlan> ThisProfileIntersectsExercises(FitnessProfile other)
         {
             var intersection = new List<DiscreteExercisePlan>();
 
@@ -99,9 +99,9 @@ namespace fitnessTracker.core
         
         
         //This creates a functional fake profile with a fake DiscreteExercisePlan.
-        public static Profile FakeFactory(string Email)
+        public static FitnessProfile FakeFactory(string Email)
         {
-            Profile fake = new Profile(Email);
+            FitnessProfile fake = new FitnessProfile(Email);
             var discreteFake = new DiscreteExercisePlan(true);
             var discreteList = new List<DiscreteExercisePlan>();
             discreteList.Add(discreteFake);

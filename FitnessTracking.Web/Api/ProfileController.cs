@@ -29,7 +29,7 @@ namespace FitnessTracking.Web.Api
 
         // GET: api/Profile
         [HttpGet]
-        public async Task<Profile> GetProfileDataAsync()
+        public async Task<FitnessProfile> GetProfileDataAsync()
         {
             var userEmail = User.FindFirst(ClaimTypes.Name).Value;
 
@@ -43,7 +43,7 @@ namespace FitnessTracking.Web.Api
 
 
         //Helper methods
-        private void GenerateUserProfile(string userEmail, Profile thisUser)
+        private void GenerateUserProfile(string userEmail, FitnessProfile thisUser)
         {
             if (thisUser == null)
             {
@@ -65,7 +65,7 @@ namespace FitnessTracking.Web.Api
 
         private void CreateProfile(string userEmail)
         {
-            var newProfile = new Profile(userEmail);
+            var newProfile = new FitnessProfile(userEmail);
             this.profileData.Add(newProfile);
             this.profileData.Commit();
         }

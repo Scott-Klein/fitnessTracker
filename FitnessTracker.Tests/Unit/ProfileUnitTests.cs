@@ -11,8 +11,8 @@ namespace FitnessTracker.Tests.Unit
         [Test]
         public void CompareEquality_ReturnsTrue()
         {
-            var fakeProfile1 = Profile.FakeFactory("test@gmail.com");
-            var fakeProfile2 = Profile.FakeFactory("test@gmail.com");
+            var fakeProfile1 = FitnessProfile.FakeFactory("test@gmail.com");
+            var fakeProfile2 = FitnessProfile.FakeFactory("test@gmail.com");
 
             Assert.That(fakeProfile1, Is.EqualTo(fakeProfile2));
             Assert.That(fakeProfile1.Equals(fakeProfile2), Is.True);
@@ -21,8 +21,8 @@ namespace FitnessTracker.Tests.Unit
         [Test]
         public void CompareInEqualityReturnsTrue()
         {
-            var fakeProfile1 = Profile.FakeFactory("test@gmail.com");
-            var fakeProfile2 = Profile.FakeFactory("test2@gmail.com");//different profiles
+            var fakeProfile1 = FitnessProfile.FakeFactory("test@gmail.com");
+            var fakeProfile2 = FitnessProfile.FakeFactory("test2@gmail.com");//different profiles
 
             Assert.That(fakeProfile1, Is.Not.EqualTo(fakeProfile2));
             Assert.That((fakeProfile1 != fakeProfile2));
@@ -31,8 +31,8 @@ namespace FitnessTracker.Tests.Unit
         [Test]
         public void CompareEqualityFalse()
         {
-            var fakeProfile1 = Profile.FakeFactory("test@gmail.com");
-            var fakeProfile2 = Profile.FakeFactory("test2@gmailc.om");
+            var fakeProfile1 = FitnessProfile.FakeFactory("test@gmail.com");
+            var fakeProfile2 = FitnessProfile.FakeFactory("test2@gmailc.om");
 
             Assert.That((fakeProfile1 == fakeProfile2), Is.False);
             Assert.That(fakeProfile1.Equals(fakeProfile2), Is.False);
@@ -41,8 +41,8 @@ namespace FitnessTracker.Tests.Unit
         [Test]
         public void CompareInEqualityFalse()
         {
-            var fakeProfile1 = Profile.FakeFactory("test@gmail.com");
-            var fakeProfile2 = Profile.FakeFactory("test@gmail.com");
+            var fakeProfile1 = FitnessProfile.FakeFactory("test@gmail.com");
+            var fakeProfile2 = FitnessProfile.FakeFactory("test@gmail.com");
 
             Assert.That((fakeProfile1 != fakeProfile2), Is.False);
         }

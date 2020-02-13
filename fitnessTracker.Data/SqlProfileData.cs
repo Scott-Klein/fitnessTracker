@@ -24,7 +24,7 @@ namespace fitnessTracker.Data
             this._db = db;
         }
 
-        public void Add(Profile profile)
+        public void Add(FitnessProfile profile)
         {
             db.Add(profile);
         }
@@ -38,7 +38,7 @@ namespace fitnessTracker.Data
                 Update(userEmail, exercisePlan);
             }
 
-            userProfile = new Profile(userEmail);
+            userProfile = new FitnessProfile(userEmail);
             var exPlans = new List<DiscreteExercisePlan>();
             exPlans.Add(exercisePlan);
             userProfile.DiscreteExercisePlans = exPlans;
@@ -60,7 +60,7 @@ namespace fitnessTracker.Data
             }
         }
 
-        public Profile GetByEmailAddress(string email)
+        public FitnessProfile GetByEmailAddress(string email)
         {
             var result = db.UserProfiles.Find(email);
             
@@ -74,14 +74,14 @@ namespace fitnessTracker.Data
             return db.UserProfiles.Local.Count;
         }
 
-        public Profile Update(Profile profile)
+        public FitnessProfile Update(FitnessProfile profile)
         {
             var entity = db.UserProfiles.Attach(profile);
             entity.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             return profile;
         }
 
-        public Profile Update(string userEmail, DiscreteExercisePlan exercisePlan)
+        public FitnessProfile Update(string userEmail, DiscreteExercisePlan exercisePlan)
         {
             var userProfile = db.UserProfiles.Find(userEmail);
             if (userProfile.DiscreteExercisePlans.Count() == 0)
@@ -97,7 +97,7 @@ namespace fitnessTracker.Data
 
 
         //Helper methods
-        private static void UpdateExistingPlan(DiscreteExercisePlan exercisePlan, Profile userProfile)
+        private static void UpdateExistingPlan(DiscreteExercisePlan exercisePlan, FitnessProfile userProfile)
         {
             var planList = userProfile.DiscreteExercisePlans.ToList();
             var discreteExercisePlan = planList.Find(dep => dep.id == exercisePlan.id);
@@ -105,7 +105,7 @@ namespace fitnessTracker.Data
             userProfile.DiscreteExercisePlans = planList;
         }
 
-        private static void InsertNewExercisePlan(DiscreteExercisePlan exercisePlan, Profile userProfile)
+        private static void InsertNewExercisePlan(DiscreteExercisePlan exercisePlan, FitnessProfile userProfile)
         {
             var exercises = new List<DiscreteExercisePlan>();
             exercises.Add(exercisePlan);

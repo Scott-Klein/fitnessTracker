@@ -24,7 +24,7 @@ namespace fitnessTracker.Data
         }
 
         public DbSet<FitnessPlan> FitnessPlans { get; set; }
-        public DbSet<Profile> UserProfiles { get; set; }
+        public DbSet<FitnessProfile> UserProfiles { get; set; }
         public DbSet<DiscreteExercisePlan> DiscreteExercisePlans { get; set; }
         public DbSet<ExerciseSet> ExerciseSets { get; set; }
 

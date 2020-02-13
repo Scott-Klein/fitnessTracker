@@ -9,10 +9,10 @@ namespace fitnessTracker.Data
     /// </summary>
     public interface IProfileData
     {
-        Profile GetByEmailAddress(string email);
-        Profile Update(Profile profile);
-        Profile Update(string userEmail, DiscreteExercisePlan exercisePlan);
-        void Add(Profile profile);
+        FitnessProfile GetByEmailAddress(string email);
+        FitnessProfile Update(FitnessProfile profile);
+        FitnessProfile Update(string userEmail, DiscreteExercisePlan exercisePlan);
+        void Add(FitnessProfile profile);
         void Add(string userEmail, DiscreteExercisePlan exercisePlan);
         void Delete(string email);
 

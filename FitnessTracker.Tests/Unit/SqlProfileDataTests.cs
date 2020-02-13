@@ -16,7 +16,7 @@ namespace FitnessTracker.Tests.Unit
     {
         private SqlProfileData profileData;
         private readonly string testEmail = "test@gmail.com";
-        private Profile fakeProfile;
+        private FitnessProfile fakeProfile;
 
         [Test]
         public void AddingProfile_ProfileInDBset()
@@ -36,7 +36,7 @@ namespace FitnessTracker.Tests.Unit
             //Arrange
             profileData = new SqlProfileData(FitnessTrackerDbContext.MockDBContextFactory());
 
-            fakeProfile = new Profile();
+            fakeProfile = new FitnessProfile();
             var discExcPlans = new List<DiscreteExercisePlan>();
             discExcPlans.Add(new DiscreteExercisePlan(true));
 
@@ -128,7 +128,7 @@ namespace FitnessTracker.Tests.Unit
 
         private void fakeNewProfile()
         {
-            fakeProfile = new Profile(testEmail);
+            fakeProfile = new FitnessProfile(testEmail);
             var discExcPlans = new List<DiscreteExercisePlan>
             {
                 new DiscreteExercisePlan(true)

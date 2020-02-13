@@ -42,7 +42,7 @@ namespace FitnessTracking.Web
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddScoped<IProfile, Profile>();
+            services.AddScoped<IProfile, FitnessProfile>();
             services.AddScoped<IProfileData, SqlProfileData>();
 
             services.AddRazorPages();

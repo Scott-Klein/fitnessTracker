@@ -44,7 +44,7 @@ namespace fitnessTracker.core
         }
 
         [JsonIgnore]
-        public Profile Profile { get; set; }
+        public FitnessProfile Profile { get; set; }
 
         //Equality
         #region EqualityOverrides
