@@ -21,7 +21,7 @@ namespace fitnessTracker.core
             this.Name = "Randomised Exercise";
             SetsOfExercise = new List<ExerciseSet>();
             var set = new ExerciseSet();
-            set.Day = DateTime.Now;
+            set.Day = DateTime.Parse("01/01/2000");
             set.Repetitions = 50;
             set.RepetitionsCompleted = 25;
             set.SetNumber = 1;
@@ -41,6 +41,17 @@ namespace fitnessTracker.core
                         where S.Day.Date == day.Date
                         select S;
             return query.ToList();
+        }
+
+        public int GetTotalRepsForDay(DateTime day)
+        {
+            int totalReps = 0;
+            var dayOfSets = this.GetSetsForDay(day);
+            foreach (var set in dayOfSets)
+            {
+                totalReps += set.Repetitions;
+            }
+            return totalReps;
         }
 
         [JsonIgnore]

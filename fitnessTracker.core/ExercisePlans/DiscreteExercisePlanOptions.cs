@@ -12,7 +12,8 @@ namespace fitnessTracker.core.ExercisePlans
         public int MaxReps { get; set; }
         public int LevelUpFrequency { get; set; }
         public int LevelUpIntensity { get; set; }
-
+        public ExerciseDays Days { get; set; }
+        public DateTime StartDate { get; set; }
 
 
         #region Equality Overides
@@ -65,5 +66,17 @@ namespace fitnessTracker.core.ExercisePlans
             return true;
         }
         #endregion
+    }
+
+    public struct ExerciseDays
+    {
+        public bool Monday { get; set; }
+        public bool Tuesday { get; set; }
+        public bool Wednesday { get; set; }
+        public bool Thursday { get; set; }
+        public bool Friday { get; set; }
+        public bool Saturday { get; set; }
+        public bool Sunday { get; set; }
+
     }
 }
