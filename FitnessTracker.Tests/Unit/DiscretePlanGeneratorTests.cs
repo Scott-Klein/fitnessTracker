@@ -63,6 +63,7 @@ namespace FitnessTracker.Tests.Unit
         [TestCase(125, 5)]
         [TestCase(125, 6)]
         [TestCase(200, 5)]
+        [TestCase(2, 2)]
         public void ReturnsSetsCorrectTotals(int totalBegin, int sets)
         {
             var exerciseSets = DiscretePlanGenerator.CreateSets(totalBegin, sets);
@@ -154,5 +155,6 @@ namespace FitnessTracker.Tests.Unit
 
             Assert.That(DiscretePlanGenerator.SetsGetEasier(set), Is.False);
         }
+
     }
 }

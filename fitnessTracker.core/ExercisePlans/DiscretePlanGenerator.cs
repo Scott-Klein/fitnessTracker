@@ -3,10 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace fitnessTracker.core
 {
     public static class DiscretePlanGenerator
     {
+
+
+
         public static DiscreteExercisePlan Generate(DiscreteExercisePlanOptions options)
         {
             var plan = new DiscreteExercisePlan();
@@ -75,6 +79,10 @@ namespace fitnessTracker.core
             var rand = new Random();
             do
             {
+                foreach (var set in exerciseSets)
+                {
+                    set.Repetitions = 0;
+                }
                 for (int i = 0; i < totalReps; i++)
                 {
                     var threshold = rand.NextDouble() * weightTotal;

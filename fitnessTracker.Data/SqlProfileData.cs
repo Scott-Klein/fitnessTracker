@@ -37,13 +37,15 @@ namespace fitnessTracker.Data
             {
                 Update(userEmail, exercisePlan);
             }
+            else
+            {
+                userProfile = new FitnessProfile(userEmail);
+                var exPlans = new List<DiscreteExercisePlan>();
+                exPlans.Add(exercisePlan);
+                userProfile.DiscreteExercisePlans = exPlans;
 
-            userProfile = new FitnessProfile(userEmail);
-            var exPlans = new List<DiscreteExercisePlan>();
-            exPlans.Add(exercisePlan);
-            userProfile.DiscreteExercisePlans = exPlans;
-
-            Add(userProfile);
+                Add(userProfile);
+            }
         }
 
         public int Commit()
@@ -101,7 +103,14 @@ namespace fitnessTracker.Data
         {
             var planList = userProfile.DiscreteExercisePlans.ToList();
             var discreteExercisePlan = planList.Find(dep => dep.id == exercisePlan.id);
-            planList[planList.IndexOf(discreteExercisePlan)] = exercisePlan;
+
+            if (discreteExercisePlan != null)
+            {
+                planList[planList.IndexOf(discreteExercisePlan)] = exercisePlan;
+            } else
+            {
+                planList.Add(exercisePlan);
+            }
             userProfile.DiscreteExercisePlans = planList;
         }
 

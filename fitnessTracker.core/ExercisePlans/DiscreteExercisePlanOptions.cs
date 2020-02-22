@@ -4,7 +4,7 @@ using System.Text;
 
 namespace fitnessTracker.core.ExercisePlans
 {
-    public struct DiscreteExercisePlanOptions : IEquatable<DiscreteExercisePlanOptions>
+    public class DiscreteExercisePlanOptions : IEquatable<DiscreteExercisePlanOptions>
     {
         public string Name { get; set; }
         public FitnessProfile Profile { get; set; }
@@ -39,6 +39,10 @@ namespace fitnessTracker.core.ExercisePlans
 
         public bool Equals(DiscreteExercisePlanOptions other)
         {
+            if (other is null)
+            {
+                return false;
+            }
             if (this.Name != other.Name)
             {
                 return false;

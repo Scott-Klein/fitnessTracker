@@ -20,7 +20,6 @@ function App() {
         <div className="container">
             <Screen toDisplay={profile.email} />
             <ExerciseCard discreteExercises={profile.discreteExercisePlans} />
-
         </div>
     );
 }

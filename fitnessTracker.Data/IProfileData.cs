@@ -12,6 +12,7 @@ namespace fitnessTracker.Data
         FitnessProfile GetByEmailAddress(string email);
         FitnessProfile Update(FitnessProfile profile);
         FitnessProfile Update(string userEmail, DiscreteExercisePlan exercisePlan);
+        
         void Add(FitnessProfile profile);
         void Add(string userEmail, DiscreteExercisePlan exercisePlan);
         void Delete(string email);

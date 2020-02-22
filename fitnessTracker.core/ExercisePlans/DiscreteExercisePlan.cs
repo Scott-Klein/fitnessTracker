@@ -99,6 +99,14 @@ namespace fitnessTracker.core
 
         public static bool operator ==(DiscreteExercisePlan lhs, DiscreteExercisePlan rhs)
         {
+            if (lhs is null && rhs is null)
+            {
+                return true;
+            }
+            if (rhs is null)
+            {
+                return false;
+            }
             return lhs.Equals(rhs);
         }
 

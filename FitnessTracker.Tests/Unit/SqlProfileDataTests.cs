@@ -116,6 +116,24 @@ namespace FitnessTracker.Tests.Unit
 
             Assert.That(fakeProfile, Is.EqualTo(updatedProfile));
         }
+
+        [Test]
+        public void InsertsExercisePlan()
+        {
+            SetupFakeWithDb();
+
+            var discretePlan = DiscretePlanGenerator.Generate(TestInput.TestOptions);
+
+            profileData.Add(testEmail, discretePlan);
+
+            var profile = profileData.GetByEmailAddress(testEmail);
+
+            var containsGeneratedPlan = profile.DiscreteExercisePlans.ToList().Contains(discretePlan);
+
+            Assert.That(containsGeneratedPlan, Is.True);
+            Assert.That(fakeProfile.DiscreteExercisePlans.ToList().Count, Is.EqualTo(2));
+        }
+
         //Gives you a fake in memory db with a fake profile ready to go.
         public void SetupFakeWithDb()
         {

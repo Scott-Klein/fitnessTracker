@@ -6,7 +6,7 @@
 
 <h1>Add Exercise</h1>
 
-<form action="/" method="post">
+<form action="api/DiscreteExercise" method="post">
     <div class="form-group">
         <label>Exercise type</label> <br />
         <input type="radio" name="exerciseType" value="Discrete" checked /> Discrete<br />
@@ -21,33 +21,76 @@
 
     <div class="form-group">
         <label>Sets</label>
-        <input type="text" name="Set" value="" />
+        <input type="text" name="Sets" value="" />
     </div>
 
     <div class="form-group">
-        <label>Reps per first set</label>
-        <input type="text" name="set1" value="" />
+        <label>Your best Reps</label>
+        <input type="text" name="MaxReps" value="" />
     </div>
 
     <div class="form-group">
-        <label>Reps per second set</label>
-        <input type="text" name="set2" value="" />
+        <label>How often should the difficulty increase?</label>
+        <input type="text" name="LevelUpFrequency" value="" />
     </div>
 
     <div class="form-group">
-        <label>Reps per third set</label>
-        <input type="text" name="set3" value="" />
-    </div>
-
-
-    <div class="form-group">
-        <label>Reps per fourth set</label>
-        <input type="text" name="set4" value="" />
+        <label>How many reps to add on level up?</label>
+        <input type="text" name="LevelUpIntensity" value="" />
     </div>
 
 
     <div class="form-group">
-        <label>Reps per fifth set</label>
-        <input type="text" name="set5" value="" />
+        <label>Date to start exercise program</label>
+        <input type="date" name="StartDate" value="" />
     </div>
+
+
+    <div class="form-group">
+        <label>Days</label>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="mondayCheck" />
+            <label class="form-check-label" for="mondayCheck">
+                Monday
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="tuesdayCheck" />
+            <label class="form-check-label" for="tuesdayCheck">
+                Tuesday
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="wednesdayCheck" />
+            <label class="form-check-label" for="wednesdayCheck">
+                Wednesday
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="thursdayCheck" />
+            <label class="form-check-label" for="thursdayCheck">
+                Thursday
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="fridayCheck" />
+            <label class="form-check-label" for="fridayCheck">
+                Friday
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="saturdayCheck" />
+            <label class="form-check-label" for="saturdayCheck">
+                Saturday
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="sundayCheck" />
+            <label class="form-check-label" for="sundayCheck">
+                Sunday
+            </label>
+        </div>
+    </div>
+
+    <button type="submit">Submit</button>
 </form>
