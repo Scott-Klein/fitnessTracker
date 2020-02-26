@@ -2,6 +2,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 import Screen from './Screen.js';
 import { ExerciseCard, utils } from './Cards/DiscreteExerciseCard.js';
+import DayInFutureOrToday from '../../Utilities/DateUtil.js';
 
 function App() {
     var _React$useState = React.useState({ email: "Loading...", discreteExercisePlans: [{ name: "No name", setsOfExercise: [{ sets: { id: 999, setNumber: 1, repetitions: 12, repetitionsCompleted: 25 } }] }] }),
@@ -19,11 +20,14 @@ function App() {
         fetch("https://localhost:44313/api/profile").then(function (response) {
             return response.json();
         }).then(function (data) {
-            console.log("Re rendering");
-            console.log(data);
             setProfile(data);
             setExercises(data.discreteExercisePlans.length);
-            console.log("THe number of plans found is " + data.discreteExercisePlans.length);
+
+            for (var i = 0; i < data.discreteExercisePlans.length; i++) {
+                console.log("Log next");
+                var next = GetNextExercise(data.discreteExercisePlans[i]);
+                console.log(next);
+            }
         });
     }, []);
 
@@ -39,21 +43,14 @@ function App() {
 
 ReactDOM.render(React.createElement(App, null), document.getElementById('appContainer'));
 
-function ProfileComparer(prof1, prof2) {
-    if (BothDefined(prof1, prof2)) {
-        if (prof1.Email === prof2.Email) {
-            return true;
-        } else {
-            return false;
+function GetNextExercise(plan) {
+    var today = Date.now();
+    for (var i = 0; i < plan.setsOfExercise.length; i++) {
+        var day = new Date(plan.setsOfExercise[i].day);
+        if (DayInFutureOrToday(day)) {
+            console.log("Found a future or todays plan");
+            return plan.setsOfExercise[i];
         }
     }
-    return false;
-}
-
-function BothDefined(obj1, obj2) {
-    if (obj1 !== undefined && obj2 !== undefined) {
-        return true;
-    } else {
-        return false;
-    }
+    return null;
 }

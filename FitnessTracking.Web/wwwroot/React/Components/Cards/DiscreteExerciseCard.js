@@ -128,7 +128,6 @@ function Set(props) {
         setSetNum = _React$useState6[1];
 
     React.useEffect(function () {
-        console.log(props.setObject);
         if (props.setObject !== undefined && props.setObject[props.index] !== undefined) {
             setRepetitions(props.setObject[props.index].repetitions);
             setSetNum(props.setObject[props.index].setNumber);
