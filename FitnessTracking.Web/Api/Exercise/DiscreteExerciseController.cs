@@ -24,8 +24,10 @@ namespace FitnessTracking.Web.Api.Exercise
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostExercise([FromForm]DiscreteExercisePlanOptions options)
+        public async Task<IActionResult> PostExercise([FromForm]DiscreteExercisePlanOptions options, [FromForm]ExerciseDays days)
         {
+            var body = this.HttpContext.Request.Form;
+            options.Days = days;
             if (options == null)
             {
                 return this.StatusCode(500);
@@ -35,7 +37,7 @@ namespace FitnessTracking.Web.Api.Exercise
             var thisUser = this.profileData.GetByEmailAddress(userEmail);
             options.Profile = thisUser;
             var exercisePlan = DiscretePlanGenerator.Generate(options);
-            profileData.Add(userEmail, exercisePlan);
+            profileData.Update(userEmail, exercisePlan);
             profileData.Commit();
             return LocalRedirect("~/index");
         }

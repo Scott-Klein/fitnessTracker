@@ -18,6 +18,10 @@ namespace fitnessTracker.core
             List<ExerciseSet> exerciseSets = GenerateSets(options);
 
             plan.SetsOfExercise = exerciseSets;
+
+            plan.Name = options.Name;
+            plan.Profile = options.Profile;
+
             return plan;
         }
 

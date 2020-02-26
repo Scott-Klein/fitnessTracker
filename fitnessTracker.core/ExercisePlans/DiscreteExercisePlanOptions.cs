@@ -72,8 +72,18 @@ namespace fitnessTracker.core.ExercisePlans
         #endregion
     }
 
-    public struct ExerciseDays
+    public class ExerciseDays
     {
+        public ExerciseDays()
+        {
+            this.Monday = false;
+            this.Tuesday = false;
+            this.Wednesday = false;
+            this.Thursday = false;
+            this.Friday = false;
+            this.Saturday = false;
+            this.Sunday = false;
+        }
         public bool Monday { get; set; }
         public bool Tuesday { get; set; }
         public bool Wednesday { get; set; }

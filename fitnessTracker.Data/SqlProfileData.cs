@@ -86,7 +86,9 @@ namespace fitnessTracker.Data
         public FitnessProfile Update(string userEmail, DiscreteExercisePlan exercisePlan)
         {
             var userProfile = db.UserProfiles.Find(userEmail);
-            if (userProfile.DiscreteExercisePlans.Count() == 0)
+            var plan = userProfile.DiscreteExercisePlans.ToList().Find(plan => plan.id == exercisePlan.id);
+
+            if (plan == null)
             {
                 InsertNewExercisePlan(exercisePlan, userProfile);
             }
@@ -116,7 +118,11 @@ namespace fitnessTracker.Data
 
         private static void InsertNewExercisePlan(DiscreteExercisePlan exercisePlan, FitnessProfile userProfile)
         {
-            var exercises = new List<DiscreteExercisePlan>();
+            var exercises = userProfile.DiscreteExercisePlans.ToList();
+            if (userProfile.DiscreteExercisePlans == null)
+            {
+                exercises = new List<DiscreteExercisePlan>();
+            }
             exercises.Add(exercisePlan);
             userProfile.DiscreteExercisePlans = exercises;
         }

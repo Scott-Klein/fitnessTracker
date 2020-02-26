@@ -47,6 +47,14 @@ namespace FitnessTracker.Tests.Unit
         }
 
         [Test]
+        public void ReturnsPlanWithName()
+        {
+            var plan = DiscretePlanGenerator.Generate(options);
+
+            Assert.That(plan.Name, Is.Not.Null);
+        }
+
+        [Test]
         public void ReturnsProgression()
         {
             var plan = DiscretePlanGenerator.Generate(options);

@@ -8,7 +8,7 @@ function ExerciseCard(props) {
             "h5",
             { className: "card-title" },
             "Todays ",
-            props.discreteExercises[0].name,
+            props.name,
             "!"
         ),
         React.createElement(
@@ -20,7 +20,7 @@ function ExerciseCard(props) {
                 React.createElement(
                     "div",
                     { className: "col-sm" },
-                    React.createElement(SetsDisplay, { sets: props.discreteExercises[0].setsOfExercise })
+                    React.createElement(SetsDisplay, { sets: props.discreteExercises.setsOfExercise })
                 ),
                 React.createElement(
                     "div",
@@ -39,11 +39,9 @@ function SetsDisplay(props) {
         setSets = _React$useState2[1];
 
     React.useEffect(function () {
-        if (props.sets.length !== undefined) {
-            setSets(props.sets.length);
-        } else {
-            for (var i = 0; i < sets; i++) {
-                props.sets[i] = 35;
+        if (props.sets !== undefined) {
+            if (props.sets.length !== undefined) {
+                setSets(props.sets.length);
             }
         }
     });
@@ -130,7 +128,8 @@ function Set(props) {
         setSetNum = _React$useState6[1];
 
     React.useEffect(function () {
-        if (props.setObject[props.index] !== undefined) {
+        console.log(props.setObject);
+        if (props.setObject !== undefined && props.setObject[props.index] !== undefined) {
             setRepetitions(props.setObject[props.index].repetitions);
             setSetNum(props.setObject[props.index].setNumber);
         }
@@ -164,4 +163,4 @@ var utils = {
     }
 };
 
-export default ExerciseCard;
+export { ExerciseCard, utils };
